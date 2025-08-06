@@ -1,0 +1,52 @@
+# Dockerfile for Laravel 11 on AWS Lambda (CloudFormation/Bref)
+FROM bref/php-82-fpm:2.4
+
+# Install system dependencies and Node.js (for npm)
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    zip \
+    unzip \
+    libpq-dev
+
+# Install Node.js 18.x and npm
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+    apt-get install -y nodejs
+
+# Clear cache
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Install PHP extensions (including pgsql and pdo_pgsql for PostgreSQL support)
+RUN docker-php-ext-install pdo_mysql pdo_pgsql pgsql mbstring exif pcntl bcmath gd
+
+# Set working directory
+WORKDIR /var/task
+
+COPY composer.json composer.lock ./
+RUN composer install --no-dev --optimize-autoloader --no-interaction
+
+# Copiar el resto del proyecto
+COPY . .
+
+RUN mkdir -p /tmp/storage/framework/{views,cache,sessions} \
+    && mkdir -p /tmp/storage/logs \
+    && chmod -R 777 /tmp/storage
+
+# Variables de entorno para redirigir rutas de Laravel a /tmp
+ENV VIEW_COMPILED_PATH=/tmp/storage/framework/views
+ENV CACHE_PATH=/tmp/storage/framework/cache
+ENV SESSION_PATH=/tmp/storage/framework/sessions
+ENV LOG_PATH=/tmp/storage/logs
+
+# Generar caches de Laravel (opcional previo a runtime)
+RUN php artisan config:cache \
+    && php artisan route:cache \
+    && php artisan view:cache
+
+# Copia el resto del proyecto
+COPY . .
+
+RUN mkdir -p bootstrap/cache && chmod -R 777 bootstrap/cache

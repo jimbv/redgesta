@@ -1,0 +1,28 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+header{
+    background-color: #6F108B;
+}
+
+.search{
+    background-color: #ff952c;
+}
+
+.categories{
+    background-color: white;
+}
+.restults{
+    background-color: #f9fafb;
+}
+.formal{
+    background-color: white;
+}
+.testimonial{
+    background-color: #6f108b;
+}
+footer{
+    background-color: #f97316;
+}
