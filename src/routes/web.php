@@ -34,3 +34,16 @@ Route::view('/nosotros', 'nosotros')->name('nosotros');
 Route::view('/contacto', 'contacto')->name('contacto');
 
 Route::post('/contacto', [ContactoController::class, 'enviar'])->name('contacto.enviar');
+
+
+Route::get('/mail-test', function () {
+    try {
+        \Illuminate\Support\Facades\Mail::raw('Este es un correo de prueba', function ($message) {
+            $message->to('joseignaciomartin@gmail.com')
+                ->subject('Prueba de Gmail SMTP');
+        });
+        return 'Correo enviado con éxito.';
+    } catch (\Exception $e) {
+        return 'Error: ' . $e->getMessage();
+    }
+});

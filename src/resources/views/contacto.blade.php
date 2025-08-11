@@ -68,8 +68,10 @@
             <div class="flex-1 w-full">
                 @if(session('status'))
                 <div class="p-4 bg-green-100 text-green-800 rounded">
-                    {{ session('status') }}
+                    {{ session('status') }} 
                 </div>
+                <p>
+                </p>
                 @endif
                 <form class="bg-white rounded-lg shadow p-6 space-y-4" method="POST" action="/contacto">
                     @csrf
@@ -83,11 +85,25 @@
                         <input type="email" id="email" name="email" class="w-full border rounded p-2" required>
                     </div>
                     <div>
+                        <label class="block text-gray-700 font-semibold mb-1" for="telefono">Teléfono</label>
+                        <input type="text" id="telefono" name="telefono" class="w-full border rounded p-2" required>
+                    </div>
+                    <div>
                         <label class="block text-gray-700 font-semibold mb-1" for="mensaje">Mensaje</label>
                         <textarea id="mensaje" name="mensaje" rows="4" class="w-full border rounded p-2" required></textarea>
                     </div>
+                    <div>
+                                        
+                    {!! NoCaptcha::display() !!}
+
+                    @error('g-recaptcha-response')
+                        <div class="text-red-500">{{ $message }}</div>
+                    @enderror
+                    </div>
                     <button type="submit" class="bg-[#fd661f] text-white px-6 py-2 rounded hover:bg-[#ff952c] transition font-semibold">Enviar</button>
                 </form>
+
+                {!! NoCaptcha::renderJs() !!}
             </div>
         </div>
     </main>

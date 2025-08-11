@@ -1,29 +1,35 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Http\Controllers\Controller;
+ 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
 
 class ContactoController extends Controller
 {
     public function enviar(Request $request)
     {
         $datos = $request->validate([
-            'nombre' => 'required|string|max:255',
-            'email' => 'required|email',
+            'nombre'  => 'required|string|max:255',
+            'email'   => 'required|email',
             'mensaje' => 'required|string',
+            'telefono' => 'required|string',
+            'g-recaptcha-response' => 'required|captcha',
         ]);
 
         try {
-            Mail::send([], [], function ($message) use ($datos) {
-                $message->to('destinatario@tu-dominio.com') // Cambiá esto por tu correo destino
-                    ->subject('Nuevo mensaje de contacto')
-                    ->setBody(
-                        "Nombre: {$datos['nombre']}\nEmail: {$datos['email']}\nMensaje:\n{$datos['mensaje']}",
-                        'text/plain'
-                    );
-            });
+            Mail::raw(
+                "Nombre: {$datos['nombre']}\n"
+                . "Email: {$datos['email']}\n\n"
+                . "Teléfono: {$datos['email']}\n\n"
+                . "Mensaje:\n{$datos['mensaje']}",
+                function ($message) {
+                    $message->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'))
+                            ->to('joseignaciomartin@gmail.com')
+                            ->subject('Nuevo mensaje de contacto');
+                }
+            );
 
             return back()->with('status', 'Mensaje enviado con éxito.');
         } catch (\Exception $e) {
