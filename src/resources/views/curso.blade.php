@@ -123,14 +123,43 @@
             <!-- Columna 3: Formulario de contacto -->
             <div class="bg-gray-100 p-4 rounded shadow space-y-4">
                 <h2 class="text-lg font-semibold text-purple-600">Solicitá más información</h2>
-                <form method="POST" action="#">
-                    <input type="text" name="nombre" placeholder="Tu nombre" class="w-full p-2 rounded border" required>
-                    <input type="email" name="email" placeholder="Tu email" class="w-full p-2 rounded border" required>
-                    <textarea name="mensaje" rows="4" placeholder="Mensaje" class="w-full p-2 rounded border" required></textarea>
-                    <button type="submit" class="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700 transition">
-                        Enviar
-                    </button>
+                <div class="flex-1 w-full">
+                @if(session('status'))
+                <div class="p-4 bg-green-100 text-green-800 rounded">
+                    {{ session('status') }} 
+                </div>
+                <p>
+                </p>
+                @endif
+                <form  method="POST" action="/curso/{{$curso->id}}" >
+                    @csrf 
+                    <div class="pb-3">
+                        <input type="text" placeholder="Apellido y Nombre" id="nombre" name="nombre" class="w-full  rounded p-2" required>
+                    </div>
+                    <div class="pb-3">
+                        <input type="email" placeholder="Email" id="email" name="email" class="w-full border rounded p-2" required>
+                    </div>
+                    <div class="pb-3"> 
+                        <input type="text" placeholder="Teléfono" id="telefono" name="telefono" class="w-full  rounded p-2" required>
+                    </div>
+                    <div class="pb-3">
+                        <textarea id="mensaje" placeholder="Mensaje" name="mensaje" rows="4" class="w-full  rounded p-2" required></textarea>
+                    </div>
+                    <div>
+                        <input type="hidden" name="curso" value="{{$curso->denominacion}}">
+                                        
+                    {!! NoCaptcha::display() !!}
+                    <br>
+
+                    @error('g-recaptcha-response')
+                        <div class="text-red-500">{{ $message }}</div>
+                    @enderror
+                    </div>
+                    <button type="submit" class="bg-[#fd661f] text-white px-6 py-2 rounded hover:bg-[#ff952c] transition font-semibold">Enviar</button>
                 </form>
+
+                {!! NoCaptcha::renderJs() !!}
+            </div>
             </div>
 
         </div>

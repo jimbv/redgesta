@@ -25,6 +25,7 @@ Route::get('/courses/sync', [CoursesController::class, 'syncCourses']);
 Route::put('/courses/update-all-details', [CoursesController::class, 'updateAllCourseDetails']);
 Route::get('/courses/{id}', [CoursesController::class, 'getCourseDetailsById']);
 Route::get('/curso/{id}', [CoursesController::class, 'show'])->name('curso.show');
+Route::post('/curso/{id}', [CoursesController::class, 'envioEmail'])->name('curso.send');
 
 Route::get('/institutions', [InstitutionsController::class, 'index']);
 Route::post('/institutions/sync', [InstitutionsController::class, 'sync']);
