@@ -62,19 +62,23 @@
         </div>
 
         <div data-v-6b0359bd="" class="bg-white pb-16">
-            <h2 data-v-6b0359bd="" class="md:text-5xl text-3xl text-center font-bold text-[#6f108b] italic">28 Instituciones educativas</h2>
+            <h2 data-v-6b0359bd="" class="md:text-5xl text-3xl text-center font-bold text-[#6f108b] italic pb-5">28 Instituciones educativas</h2>
             <div class="container mx-auto py-6">
-    <div class="flex flex-wrap justify-center">
-        @foreach($instituciones as $institucion)
-        @if(isset($institucion->url_logo) && $institucion->url_logo)
-            <div class="w-1/7 p-2 text-center">
-                <img src="/{{$institucion->url_logo}}" alt="Logo {{ $institucion->nombre }}" class="mx-auto h-24 object-contain">
-                <p class="mt-2 text-sm">{{ $institucion->nombre }}</p>
+                <div class="flex flex-wrap justify-center">
+                    @foreach($instituciones as $institucion)
+                    @if(isset($institucion->url_logo) && $institucion->url_logo)
+                    <div class="w-1/7 p-2 text-center">
+                        <img
+                            src="/{{ $institucion->url_logo }}"
+                            alt="Logo {{ $institucion->nombre }}"
+                            class="mx-auto h-20 object-contain filter grayscale hover:grayscale-0 transition duration-300">
+                        <p class="mt-2 text-sm">{{ $institucion->nombre }}</p>
+                    </div>
+                    @endif
+                    @endforeach
+                </div>
+
             </div>
-            @endif
-        @endforeach
-    </div>
-</div>
 
         </div>
     </section>
