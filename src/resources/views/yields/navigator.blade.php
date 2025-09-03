@@ -17,9 +17,6 @@
                 <div class="flex space-x-14">
 
                     <a href="/" class="text-[#fd661f] hover:scale-110 hover:font-bold duration-300 px-2 py-1 text-base font-semibold border-b-2 border-white">Inicio</a>
-                    <a href="/" class="text-[#fd661f] hover:scale-110 hover:font-bold duration-300 px-2 py-1 text-base font-semibold border-b-2 border-white">Carreras</a>
-                    <a href="/" class="text-[#fd661f] hover:scale-110 hover:font-bold duration-300 px-2 py-1 text-base font-semibold border-b-2 border-white">Cursos</a>
-                    <a href="/" class="text-[#fd661f] hover:scale-110 hover:font-bold duration-300 px-2 py-1 text-base font-semibold border-b-2 border-white">Talleres</a>
                     <a href="/nosotros" class="text-[#fd661f] hover:scale-110 hover:font-bold duration-300 px-2 py-1 text-base font-semibold border-b-2 border-white">Nosotros</a>
                     <a href="/contacto" class="text-[#fd661f] hover:scale-110 hover:font-bold duration-300 px-2 py-1 text-base font-semibold border-b-2 border-white">Contacto</a>
 
