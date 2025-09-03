@@ -26,7 +26,7 @@ class ContactoController extends Controller
                 . "Mensaje:\n{$datos['mensaje']}",
                 function ($message) {
                     $message->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'))
-                            ->to('joseignaciomartin@gmail.com')
+                            ->to('info@redgesta.ar')
                             ->subject('Nuevo mensaje de contacto');
                 }
             );
