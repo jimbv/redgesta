@@ -58,7 +58,7 @@
                         Características
                     </summary>
                     <div class="bg-white text-black px-4 py-2">
-                        {!! nl2br($curso->caracteristicas) !!}
+                        {!! nl2br(e($curso->caracteristicas)) !!}
                     </div>
                 </details>
 
@@ -91,7 +91,7 @@
                         Requisitos
                     </summary>
                     <div class="bg-white text-black px-4 py-2">
-                        {{ $curso->requisitos }}
+                        {!! nl2br(e($curso->requisitos)) !!}
                     </div>
                 </details>
 
