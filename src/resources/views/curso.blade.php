@@ -116,15 +116,15 @@
                         {!! nl2br($curso->programa_de_estudio) !!}
                     </div>
                 </details>
-                
+
                 <!-- Precio -->
                 <details class="bg-purple-600 text-white rounded overflow-hidden">
                     <summary class="cursor-pointer px-4 py-2 font-semibold select-none flex items-center gap-2">
-                        <i class="fa-solid fa-list text-cyan-400"></i>
+                        <i class="fa-solid fa-dollar-sign text-cyan-400"></i>
                         Precio
                     </summary>
                     <div class="bg-white text-black px-4 py-2">
-                        {!! nl2br(e($curso->precio)) !!}
+                       $ {!! number_format($curso->precio, 2, ',', '.') !!}
                     </div>
                 </details>
 
