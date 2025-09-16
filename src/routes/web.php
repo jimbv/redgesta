@@ -28,7 +28,7 @@ Route::get('/curso/{id}', [CoursesController::class, 'show'])->name('curso.show'
 Route::post('/curso/{id}', [CoursesController::class, 'envioEmail'])->name('curso.send');
 
 Route::get('/institutions', [InstitutionsController::class, 'index']);
-Route::post('/institutions/sync', [InstitutionsController::class, 'sync']);
+Route::get('/institutions/sync', [InstitutionsController::class, 'sync']);
 
 Route::get('/locations', [LocationsController::class, 'index']);
 Route::view('/nosotros', 'nosotros')->name('nosotros');
