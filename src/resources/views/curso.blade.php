@@ -113,7 +113,7 @@
                         Programa de estudio
                     </summary>
                     <div class="bg-white text-black px-4 py-2">
-                        {!! nl2br($curso->programa_de_estudio) !!}
+                        {!! nl2br(e($curso->programa_de_estudio)) !!}
                     </div>
                 </details>
 
